@@ -6,6 +6,7 @@ const depoimentosWrapper = depoimentosLista ? depoimentosLista.parentElement : n
 const botaoDepAnterior = document.getElementById("dep-prev");
 const botaoDepProximo = document.getElementById("dep-next");
 const ctaWhatsapp = document.getElementById("cta-whatsapp");
+const provaSocialTexto = document.getElementById("prova-social-texto");
 let whatsappFloatRoot = document.getElementById("whatsapp-float-root");
 
 /*
@@ -85,6 +86,11 @@ const fallbackDepoimentos = [
         autor: "Rodrigo, 44 anos"
     }
 ];
+
+const fallbackProvaSocial = {
+    alunosAtendidos: "+50",
+    descricao: "alunos atendidos"
+};
 
 const fallbackWhatsappConfig = {
     numero: "5561986527228",
@@ -610,7 +616,19 @@ function ativarReveal() {
     });
 }
 
+function atualizarProvaSocial(config) {
+    if (!provaSocialTexto) {
+        return;
+    }
+
+    const alunos = String(config?.alunosAtendidos || fallbackProvaSocial.alunosAtendidos).trim();
+    const descricao = String(config?.descricao || fallbackProvaSocial.descricao).trim();
+    provaSocialTexto.textContent = `${alunos} ${descricao}`.trim();
+}
+
 async function carregarDepoimentos() {
+    let provaSocial = fallbackProvaSocial;
+
     try {
         const resposta = await fetch("./depoimentos.json", { cache: "no-store" });
         if (!resposta.ok) {
@@ -618,10 +636,22 @@ async function carregarDepoimentos() {
         }
 
         const dados = await resposta.json();
-        todosDepoimentos = Array.isArray(dados) && dados.length > 0 ? dados : fallbackDepoimentos;
+
+        if (Array.isArray(dados)) {
+            todosDepoimentos = dados.length > 0 ? dados : fallbackDepoimentos;
+        } else {
+            const lista = Array.isArray(dados?.depoimentos) ? dados.depoimentos : [];
+            todosDepoimentos = lista.length > 0 ? lista : fallbackDepoimentos;
+            provaSocial = {
+                ...fallbackProvaSocial,
+                ...(dados?.provaSocial || {})
+            };
+        }
     } catch (error) {
         todosDepoimentos = fallbackDepoimentos;
+        provaSocial = fallbackProvaSocial;
     } finally {
+        atualizarProvaSocial(provaSocial);
         renderizarPaginaAtualDepoimentos();
         prepararControlesDepoimentos();
         prepararDragDepoimentos();

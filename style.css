@@ -255,6 +255,37 @@ header p {
     line-height: 1.45;
 }
 
+.prova-social {
+    width: min(1040px, calc(100% - 32px));
+    margin: 0 auto;
+    padding: 6px 18px;
+    border-radius: 999px;
+    border: 1px solid color-mix(in srgb, var(--accent) 45%, #ffffff 55%);
+    background: linear-gradient(130deg, rgba(15, 23, 42, 0.72), rgba(24, 34, 56, 0.52));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+.prova-social-kicker {
+    margin: 0;
+    color: var(--text-soft);
+    font-size: 0.86rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.prova-social-texto {
+    margin: 0;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: clamp(1.04rem, 2.2vw, 1.32rem);
+    color: #fff5eb;
+    text-shadow: 0 0 18px color-mix(in srgb, var(--accent) 35%, transparent 65%);
+}
+
 .depoimentos {
     width: min(1040px, calc(100% - 32px));
     margin: 0 auto 18px;
