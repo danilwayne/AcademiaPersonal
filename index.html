@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transformação Fitness</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;700;800&family=Space+Grotesk:wght@600;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>Transformação Fitness</h1>
+        <p>Seu resultado começa hoje</p>
+
+        <div class="paleta-wrap reveal">
+            <label for="paleta" class="paleta-label">Escolha o estilo visual:</label>
+            <select id="paleta" class="paleta-select" aria-label="Selecionar variação de cores">
+                <option value="energia">Energia Laranja</option>
+                <option value="oceano">Oceano Elétrico</option>
+                <option value="vulcao">Vulcão Vermelho</option>
+            </select>
+        </div>
+    </header>
+
+    <section class="hero reveal">
+        <h2>Transforme seu corpo em 30 dias</h2>
+        <p>Primeira aula grátis. Vagas limitadas.</p>
+
+        <a class="botao" href="https://wa.me/5561986527228" target="_blank">Quero começar agora</a>
+    </section>
+
+    <section class="beneficios reveal">
+        <h2>O que você vai conquistar</h2>
+
+        <div class="cards">
+            <div class="card reveal-item">
+                <h3>Resultados rápidos</h3>
+                <p>Treinos focados no seu objetivo</p>
+            </div>
+
+            <div class="card reveal-item">
+                <h3>Acompanhamento</h3>
+                <p>Suporte direto com personal</p>
+            </div>
+
+            <div class="card reveal-item">
+                <h3>Plano personalizado</h3>
+                <p>Dieta + treino sob medida</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="depoimentos reveal">
+        <h2>Resultados Reais</h2>
+        <p class="depoimentos-intro">Alunos que decidiram começar e hoje treinam com consistência.</p>
+
+        <!--
+            A lista de depoimentos e renderizada via JavaScript a partir do arquivo depoimentos.json.
+            Isso facilita futuras alteracoes: para trocar textos, voce mexe no JSON sem editar HTML.
+            O wrapper e necessario para o efeito de slide: overflow:hidden esconde o card que esta
+            saindo enquanto o novo entra, sem sumir com opacity.
+        -->
+        <div class="depoimentos-wrapper">
+            <div id="depoimentos-lista" class="depoimentos-grid"></div>
+        </div>
+
+        <!--
+            Controles da roleta (3 depoimentos por vez).
+            No futuro, voce pode remover algum botao sem afetar os dados de depoimentos.
+            A velocidade da roleta automatica e o comportamento do arrasto ficam em script.js
+            nas constantes de configuracao do carrossel.
+        -->
+        <div class="depoimentos-controles reveal" aria-label="Controles de depoimentos">
+            <button id="dep-prev" class="dep-btn dep-btn-seta" type="button" aria-label="Ver depoimentos anteriores">
+                <span aria-hidden="true">&larr;</span>
+            </button>
+            <button id="dep-next" class="dep-btn dep-btn-seta dep-btn-destaque" type="button" aria-label="Ver proximos depoimentos">
+                <span aria-hidden="true">&rarr;</span>
+            </button>
+        </div>
+    </section>
+
+    <footer>
+        <p>© <span id="ano"></span> Transformação Fitness</p>
+        <script src="script.js"></script>
+    </footer>
+
+</body>
+
+</html>
