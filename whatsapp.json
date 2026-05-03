@@ -1,0 +1,10 @@
+{
+    "numero": "5561986527228",
+    "mensagem": "Ola, quero comecar hoje",
+    "ctaPrincipal": {
+        "texto": "Quero comecar agora"
+    },
+    "botaoFlutuante": {
+        "ariaLabel": "Falar no WhatsApp"
+    }
+}
